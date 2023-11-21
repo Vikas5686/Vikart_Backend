@@ -5,9 +5,9 @@ const users = require("../models/UserShema")
 
 
 router.post("/register", async (req, res) => {
-    const { name, country, email, Score } = req.body
+    const { Username, password, email, Score } = req.body
     try {
-        if (!name || !country || !email) {
+        if (!Username || !password || !email) {
             res.status(403).send("plz fill the form")
         } else {
             const preuser = await users.findOne({ email: email })
@@ -17,7 +17,7 @@ router.post("/register", async (req, res) => {
             }
             else {
                 const AddNewUser = new users({
-                    name, country, email, Score
+                    Username, password, email, Score
                 })
                 await AddNewUser.save()
                 console.log(AddNewUser._id)

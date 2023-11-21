@@ -2,11 +2,11 @@ const { mongoose } = require('mongoose');
 
 const userSchema=new mongoose.Schema(
     {
-        name:{
+        Username:{
             type:String,
             required:true
         },
-        country:{
+        password:{
             type:String,
             require:true
         },
