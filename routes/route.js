@@ -59,6 +59,19 @@ router.get("/getUser/:id", async (req, res) => {
         res.status(404).json(error)
     }
 })
+
+router.get("/getUserEmail/:id", async (req, res) => {
+    try {
+        console.log(req.params)
+        const { id } = req.params
+        const userindividual = await users.find({ email: id })
+        console.log(userindividual)
+        res.status(201).json(userindividual[0])
+    } catch (error) {
+        console.log("djflsfj")
+        res.status(404).json(error)
+    }
+})
 router.patch("/Update/:id", async (req, res) => {
     try {
         console.log(req.body)
