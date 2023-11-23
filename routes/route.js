@@ -73,7 +73,7 @@ router.get("/getUserEmail/:id", async (req, res) => {
         console.log(userindividual)
         res.status(201).json(userindividual[0].password)
     } catch (error) {
-        res.status(404).json(error)
+        res.status(403).json(error)
     }
 })
 router.patch("/Update/:id", async (req, res) => {
