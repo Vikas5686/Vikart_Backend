@@ -62,14 +62,12 @@ router.get("/getUser/:id", async (req, res) => {
 
 router.get("/getUserEmail/:id", async (req, res) => {
     try {
-        const password = req.body.password;
-        console.log(password)
         const { id } = req.params
         const userindividual = await users.find({ email: id })
         console.log(userindividual)
-        res.status(201).json(userindividual[0])
+        res.status(201).json(userindividual)
     } catch (error) {
-        res.status(403).json(error)
+        res.status(404).json(error)
     }
 })
 router.patch("/Update/:id", async (req, res) => {
