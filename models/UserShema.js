@@ -14,9 +14,13 @@ const userSchema=new mongoose.Schema(
             type:String,
             require:true
         },
-        Score:{
+        Favourite:{
             type:Number,
-            require
+            require:true
+        } ,      
+        cart:{
+            type:Number,
+            require:true
         }       
     }
 )
