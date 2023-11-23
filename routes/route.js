@@ -66,11 +66,8 @@ router.get("/getUserEmail/:id", async (req, res) => {
         console.log(password)
         const { id } = req.params
         const userindividual = await users.find({ email: id })
-        if (userindividual[0].password != password) {
-            res.status(403).json(error)
-        }
         console.log(userindividual)
-        res.status(201).json(userindividual)
+        res.status(201).json(userindividual[0])
     } catch (error) {
         res.status(403).json(error)
     }
