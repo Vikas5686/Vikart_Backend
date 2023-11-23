@@ -21,7 +21,7 @@ router.post("/register", async (req, res) => {
                 })
                 await AddNewUser.save()
                 console.log(AddNewUser._id)
-                
+
                 res.status(201).json(AddNewUser._id)
             }
         }
@@ -51,7 +51,7 @@ router.get("/getUser/:id", async (req, res) => {
     try {
         console.log(req.params)
         const { id } = req.params
-        const userindividual = await users.find({  _id: id  })
+        const userindividual = await users.find({ _id: id })
         console.log(userindividual)
         res.status(201).json(userindividual)
     } catch (error) {
@@ -62,13 +62,17 @@ router.get("/getUser/:id", async (req, res) => {
 
 router.get("/getUserEmail/:id", async (req, res) => {
     try {
-        console.log(req.params)
+
+        const password = req.body.password;
+        console.log(password)
         const { id } = req.params
         const userindividual = await users.find({ email: id })
+        if (userindividual[0].password != password) {
+            res.status(404).json(error)
+        }
         console.log(userindividual)
-        res.status(201).json(userindividual[0])
+        res.status(201).json(userindividual[0].password)
     } catch (error) {
-        console.log("djflsfj")
         res.status(404).json(error)
     }
 })
@@ -77,7 +81,7 @@ router.patch("/Update/:id", async (req, res) => {
         console.log(req.body)
         const { id } = req.params
         const userindividual = await users.findOneAndUpdate({ _id: id }, { $set: { Score: req.body.Score } })
-        if (userindividual==null) {
+        if (userindividual == null) {
             console.log(userindividual)
         }
         res.status(201).json(userindividual)
